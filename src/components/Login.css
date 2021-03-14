@@ -1,0 +1,15 @@
+form.login{
+    width: 50%;
+    margin-left: 25%;
+    padding: 4%;
+    border-radius: 10px;
+
+}
+
+.z-depth-1-half {
+    box-shadow: 0 5px 11px 0 rgba(0,0,0,.18),0 4px 15px 0 rgba(0,0,0,.15)!important;
+}
+
+.title{
+    text-align: center;
+}
