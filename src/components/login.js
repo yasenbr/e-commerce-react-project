@@ -20,14 +20,13 @@ class Login extends Component {
 
   login = (e) => {
     e.preventDefault();
-    
+
     const { username, password } = this.state;
     if (!username || !password) {
       console.log("Fill all fields!");
       return this.setState({ error: "Fill all fields!" });
     }
-    this.props.context.login(username, password)
-    .then((loggedIn) => {
+    this.props.context.login(username, password).then((loggedIn) => {
       if (!loggedIn) {
         this.setState({ error: "Invalid Credentials" });
       }
@@ -46,7 +45,7 @@ class Login extends Component {
         <br />
         <div className="container">
           <Form className="z-depth-1-half login" onSubmit={this.login}>
-            <Form.Group controlId="formBasicEmail" >
+            <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control
                 placeholder="Enter email"
@@ -66,7 +65,9 @@ class Login extends Component {
               />
             </Form.Group>
             {this.state.error && (
-                <Alert variant="danger" className="error">{this.state.error}</Alert>
+              <Alert variant="danger" className="error">
+                {this.state.error}
+              </Alert>
             )}
             <Button variant="primary" type="submit">
               Login

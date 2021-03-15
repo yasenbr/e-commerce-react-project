@@ -1,0 +1,31 @@
+.alert {
+    position: relative;
+    padding: 0px;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    width: 35%;
+    text-align: center;
+    margin-left: 60%;
+    margin-top: -12%;
+}
+.price-position{
+    position: relative;
+    padding: 0px;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    width: 35%;
+    text-align: center;
+    margin-left: 60%;
+    margin-top: -15%;
+    background-color: #b4ecb4;
+}
+/* .btn-color-custom{
+    background-color: #b4ecb4 !important;
+    border-color: #b4ecb4;
+    color: #212529;
+} */
+.z-depth-1-half {
+    box-shadow: 0 5px 11px 0 rgba(0,0,0,.18),0 4px 15px 0 rgba(0,0,0,.15)!important;
+}
