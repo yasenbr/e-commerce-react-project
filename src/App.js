@@ -1,17 +1,21 @@
 import React, { Component } from "react";
-import { Switch, Route, Link, BrowserRouter as Router } from "react-router-dom";
+import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
+import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 import { Button, Nav, Navbar, Form, FormControl } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import Context from "./Context";
 
 import Cart from "./components/Cart";
 import Login from "./components/Login";
 import AddProduct from "./components/AddProduct";
 import ProductList from "./components/ProductList";
+import RegisterUser from "./components/RegisterUser";
+
+import Context from "./Context";
+
 //back-end server and authentication
-import axios from 'axios';
-import jwt_decode from 'jwt-decode';
+
 
 class App extends Component {
   constructor(props) {
@@ -30,8 +34,8 @@ class App extends Component {
 
   }
 
-  login = async (email, password) => {
-    const res = await axios.post(
+  login =  async(email, password) => {
+    const res =  await axios.post(
       'http://localhost:3001/login',
       { email, password },
     ).catch((res) => {
@@ -48,13 +52,15 @@ class App extends Component {
   
       this.setState({ user });
       localStorage.setItem("user", JSON.stringify(user));
+      console.log(true);
       return true;
     } else {
+      console.log(false);
       return false;
     }
   }
   
-  logout = e => {
+  logout = (e) => {
     e.preventDefault();
     this.setState({ user: null });
     localStorage.removeItem("user");
@@ -97,13 +103,19 @@ class App extends Component {
                     {Object.keys(this.state.cart).length}
                   </span>
                 </Nav.Link>
-                {!this.state.user ? (
-                  <Nav.Link href="/login">Login</Nav.Link>
-                ) : (
-                  <Nav.Link href="/logout">Logout</Nav.Link>
-                )}
+                <Nav.Link href="/registerUser">Register</Nav.Link>
+                
               </Nav>
               <Form inline>
+                <Nav>
+                  {!this.state.user ? (
+                  <Nav.Link href="/login">Login</Nav.Link>
+                ) : (
+                  <Nav.Link href="/logout" onClick={this.logout}>Logout</Nav.Link>
+                )}</Nav>
+              
+                </Form>
+                <Form inline>
                 <FormControl
                   type="text"
                   placeholder="Search"
@@ -118,6 +130,7 @@ class App extends Component {
               <Route exact path="/cart" component={Cart} />
               <Route exact path="/add-product" component={AddProduct} />
               <Route exact path="/products" component={ProductList} />
+              <Route exact path="/registerUser" component={RegisterUser}/>
             </Switch>
           </div>
         </Router>
