@@ -1,11 +1,11 @@
 import React from "react";
 import Context from "./Context";
 
-const withContext = WrappedComponent => {
-  const WithHOC = props => {
+const withContext = (WrappedComponent) => {
+  const WithHOC = (props) => {
     return (
       <Context.Consumer>
-        {context => <WrappedComponent {...props} context={context} />}
+        {(context) => <WrappedComponent {...props} context={context} />}
       </Context.Consumer>
     );
   };

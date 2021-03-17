@@ -15,7 +15,7 @@ import Context from "./Context";
 
 //back-end server and authentication
 
-class App extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -49,10 +49,8 @@ class App extends Component {
 
       this.setState({ user });
       localStorage.setItem("user", JSON.stringify(user));
-      console.log(true);
       return true;
     } else {
-      console.log(false);
       return false;
     }
   };
@@ -61,6 +59,12 @@ class App extends Component {
     e.preventDefault();
     this.setState({ user: null });
     localStorage.removeItem("user");
+  };
+
+  addProduct = (product, callback) => {
+    let products = this.state.products.slice();
+    products.push(product);
+    this.setState({ products }, () => callback && callback());
   };
 
   render() {
@@ -100,7 +104,13 @@ class App extends Component {
                     {Object.keys(this.state.cart).length}
                   </span>
                 </Nav.Link>
-                <Nav.Link href="/registerUser">Register</Nav.Link>
+                <Nav>
+                  {
+                    !this.state.user(
+                      <Nav.Link href="/registerUser">Register</Nav.Link>
+                    )
+                  }
+                </Nav>
               </Nav>
               <Form inline>
                 <Nav>
@@ -136,5 +146,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;
